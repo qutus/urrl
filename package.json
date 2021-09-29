@@ -2,5 +2,14 @@
   "name": "shortUrlGeneratorApi",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jest ./tests/",
+    "dev-test": "nodemon -x jest ./tests/"
+  },
+  "devDependencies": {
+    "jest": "^27.2.3",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
+  }
 }
