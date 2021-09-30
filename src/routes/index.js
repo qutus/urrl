@@ -1,9 +1,11 @@
+const analyticsRoutes = require('./analytics');
 const urlGenerationRoutes = require('./shortUrlGeneration');
-const shortUrlProcessing = require('./shortUrlProcessing');
+const shortUrlProcessingRoutes = require('./shortUrlProcessing');
 
 const routes = [
+    ...analyticsRoutes,
     ...urlGenerationRoutes,
-    ...shortUrlProcessing,
+    ...shortUrlProcessingRoutes,
 ];
 
 function mountRoutes(app) {

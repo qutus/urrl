@@ -4,7 +4,7 @@ describe('shortUrlProcessing', () => {
             jest.resetModules();
 
             jest.mock('../../src/db/generatedUrl', () => ({
-                findUrlGenerationByShortUriId: (shortUrlId) => shortUrlId === 'test' ? { originalUrl: 'http://lunii.com' } : null
+                findUrlGenerationByShortUrlId: (shortUrlId) => shortUrlId === 'test' ? { originalUrl: 'http://lunii.com' } : null
             }));
             const { getOriginalUrlFromShortUrlId } = require('../../src/business/shortUrlProcessing');
 
@@ -16,7 +16,7 @@ describe('shortUrlProcessing', () => {
             jest.resetModules();
 
             jest.mock('../../src/db/generatedUrl', () => ({
-                findUrlGenerationByShortUriId: (shortUrlId) => null
+                findUrlGenerationByShortUrlId: (shortUrlId) => null
             }));
             const { UnknownShortUrlError } = require('../../src/errors');
             const { getOriginalUrlFromShortUrlId } = require('../../src/business/shortUrlProcessing');

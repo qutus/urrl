@@ -2,7 +2,6 @@ const { urlGenerator: urlGeneratorConfig } = require('../config');
 
 function isUrlRfcCompliant(url) {
     try {
-        console.log(url);
         new URL(url);
         return true;
     } catch (_) {

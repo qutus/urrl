@@ -8,10 +8,7 @@ async function postGenerateShortUrl(req, res, next) {
     try {
         const shortUrlGeneration = await generateShortUrlLinkedToValidOriginalUrl(originalUrl);
 
-        res.send({ 
-            originalUrl: shortUrlGeneration.originalUrl, 
-            shortUrl: shortUrlGeneration.shortUrl 
-        });
+        res.send(shortUrlGeneration);
     } catch (error) {
         if(error instanceof InvalidUrlError) {
             res.status(409).send({ error: 'invalid URL' });
@@ -19,7 +16,6 @@ async function postGenerateShortUrl(req, res, next) {
             res.sendStatus(400);
         }
     }
-    
 }
 
 module.exports = {

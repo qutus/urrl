@@ -9,7 +9,10 @@ async function insertUrlGeneration(originalUrl, shortUrl, shortUrlId) {
         db.insert({
             originalUrl,
             shortUrl,
-            shortUrlId
+            shortUrlId,
+            analytics: {
+                redirectionCount: 0
+            }
         }, (err, newDoc) => {
             if(err) {
                 reject(err);
@@ -20,7 +23,7 @@ async function insertUrlGeneration(originalUrl, shortUrl, shortUrlId) {
     });
 }
 
-async function findUrlGenerationByShortUriId(shortUrlId) {
+async function findUrlGenerationByShortUrlId(shortUrlId) {
     return new Promise((resolve, reject) => {
         db.findOne({ shortUrlId }, (err, doc) => {
             if(err) {
@@ -32,9 +35,33 @@ async function findUrlGenerationByShortUriId(shortUrlId) {
     });
 }
 
+async function increaseUrlGenerationAnalyticRedirectionCountByShortUrlId(shortUrlId) {
+    return new Promise((resolve, reject) => {
+        db.update({ shortUrlId }, { $inc: { 'analytics.redirectionCount': 1 }  }, (err, _, docs) => {
+            if(err) {
+                reject(err);
+            } else {
+                resolve(docs);
+            }
+        });
+    });
+}
 
+async function findAllUrlGenerationForGlobalAnalyticReport() {
+    return new Promise((resolve, reject) => {
+        db.find({}, { _id: 0, originalUrl: 1, shortUrl: 1, analytics: 1 }, (err, docs) => {
+            if(err) {
+                reject(err);
+            } else {
+                resolve(docs);
+            }
+        });
+    });
+}
 
 module.exports = {
     insertUrlGeneration,
-    findUrlGenerationByShortUriId
+    findUrlGenerationByShortUrlId,
+    increaseUrlGenerationAnalyticRedirectionCountByShortUrlId,
+    findAllUrlGenerationForGlobalAnalyticReport
 }

@@ -11,9 +11,9 @@ async function generateShortUrlLinkedToValidOriginalUrl(originalUrl) {
     const shortUrlId = generateShortUrlId();
     const shortUrl = generateShortUrl(shortUrlId);
 
-    const shortUrlGeneration = await insertUrlGeneration(originalUrl, shortUrl, shortUrlId);
+    const { originalUrl: _originalUrl, shortUrl: _shortUrl } = await insertUrlGeneration(originalUrl, shortUrl, shortUrlId);
 
-    return shortUrlGeneration;
+    return { originalUrl: _originalUrl, shortUrl: _shortUrl };
 }
 
 module.exports = {

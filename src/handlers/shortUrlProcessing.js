@@ -1,5 +1,6 @@
 const { UnknownShortUrlError } = require('../errors');
 const { getOriginalUrlFromShortUrlId } = require('../business/shortUrlProcessing');
+const analyticsService = require('../services/analytics');
 
 async function getRedirectedToOriginalUrl(req, res, next) {
     const { shortUrlId } = req.params;
@@ -14,7 +15,12 @@ async function getRedirectedToOriginalUrl(req, res, next) {
         } else {
             res.sendStatus(400);
         }
+
+        return;
     }
+    next();
+
+    analyticsService.onShortUrlRedirection(shortUrlId);
 }
 
 module.exports = {
