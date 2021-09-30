@@ -11,8 +11,10 @@ app.use(morgan('tiny'));
 
 mountRoutes(app);
 
-app.listen(apiConfig.port, () => {
-    console.log(`Server up and running on port ${apiConfig.port}`);
-});
+if(process.env.NODE_ENV !== 'test') {
+    app.listen(apiConfig.port, () => {
+        console.log(`Server up and running on port ${apiConfig.port}`);
+    });
+}
 
 module.exports = app;
