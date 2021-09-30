@@ -1,18 +1,18 @@
 const express = require('express');
+const morgan = require('morgan');
 
-const PORT = 3050;
+const { api: apiConfig } = require('./config');
+
+const mountRoutes = require('./routes');
+
 const app = express();
+app.use(express.json());
+app.use(morgan('tiny'));
 
-app.get('/', (req, res, next) => {
-    res.sendStatus(404);
-});
+mountRoutes(app);
 
-app.get('/test', (req, res, next) => {
-    res.send({ status: 'success' });
-});
-
-app.listen(PORT, () => {
-    console.log(`Server up and running on port ${PORT}`);
+app.listen(apiConfig.port, () => {
+    console.log(`Server up and running on port ${apiConfig.port}`);
 });
 
 module.exports = app;

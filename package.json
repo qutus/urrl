@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest ./tests/",
+    "test-coverage": "jest ./tests/ --coverage",
     "dev-test": "nodemon -x jest ./tests/"
   },
   "devDependencies": {
@@ -13,6 +14,8 @@
     "supertest": "^6.1.6"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nedb": "^1.8.0"
   }
 }
