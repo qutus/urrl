@@ -6,8 +6,11 @@ const { api: apiConfig } = require('./config');
 const mountRoutes = require('./routes');
 
 const app = express();
+
 app.use(express.json());
-app.use(morgan('tiny'));
+if(process.env.NODE_ENV !== 'test') {
+    app.use(morgan('tiny'));
+}
 
 mountRoutes(app);
 

@@ -1,12 +1,13 @@
 {
-  "name": "shortUrlGeneratorApi",
+  "name": "urrl",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest ./tests/",
-    "test-coverage": "cross-env NODE_ENV=test jest ./tests/ --coverage",
-    "start-dev": "cross-env NODE_ENV=dev node src/index.js"
+    "test": "cross-env NODE_ENV=test jest ./tests/ --silent",
+    "test-coverage": "cross-env NODE_ENV=test jest ./tests/ --coverage --silent",
+    "start-dev": "cross-env NODE_ENV=dev node src/index.js",
+    "start": "cross-env NODE_ENV=prod node src/index.js"
   },
   "devDependencies": {
     "jest": "^27.2.3",

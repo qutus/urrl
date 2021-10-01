@@ -4,7 +4,7 @@
 nodejs: v14.15.1 or >
 
 ## Initial project setup
-- `git clone ...`
+- `git clone https://github.com/qutus/urrl.git`
 - `yarn install`
 - `yarn run test`
 
@@ -13,7 +13,8 @@ If tests are all good, your environnement is all set. If not, contact repository
 ## Scripts
 - `yarn run test`: Launch tests
 - `yarn run test-coverage`: Launch code coverage analysis and generate a command line report
-- `yarn run start-dev`: Start api. Will listen on port defined in `src/config.js` file
+- `yarn run start-dev`: Start api in dev context. Will listen on port defined in `src/config.js` file
+- `yarn run start`: Start api in production context. Will listen on port defined in `src/config.js` file
 
 ## Configuration
 See `src/config.js` file
